@@ -1,5 +1,9 @@
 # ThemeStage
 
+<img width="1905" height="958" alt="themstage" src="https://github.com/user-attachments/assets/629f6941-4dce-481c-b4c9-4a6bde8ea000" />
+
+
+
 [Deutsch](#deutsch) | [English](#english)
 
 ---
