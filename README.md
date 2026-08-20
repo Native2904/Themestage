@@ -1,7 +1,6 @@
 # ThemeStage
 
-<img width="1905" height="958" alt="themstage" src="https://github.com/user-attachments/assets/629f6941-4dce-481c-b4c9-4a6bde8ea000" />
-
+<img width="1905" height="958" alt="themstage" src="https://github.com/user-attachments/assets/f7487cf5-900b-42fb-9014-622c2e4b791e" />
 
 
 [Deutsch](#deutsch) | [English](#english)
