@@ -1,0 +1,23 @@
+{
+    "name": "One Double Light",
+    "background": "#FAFAFA",
+    "foreground": "#383A43",
+    "cursorColor": "#191A19",
+    "selectionBackground": "#454E5E",
+    "black": "#454B58",
+    "red": "#F74840",
+    "green": "#25A343",
+    "yellow": "#CC8100",
+    "blue": "#0087C1",
+    "purple": "#B50DA9",
+    "cyan": "#009AB7",
+    "white": "#EBD8D9",
+    "brightBlack": "#0E131F",
+    "brightRed": "#FF3711",
+    "brightGreen": "#00B90E",
+    "brightYellow": "#EC9900",
+    "brightBlue": "#1165DE",
+    "brightPurple": "#E500D8",
+    "brightCyan": "#00B4DD",
+    "brightWhite": "#FFFFFF"
+}

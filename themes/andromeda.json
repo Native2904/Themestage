@@ -1,0 +1,23 @@
+{
+    "name": "Andromeda",
+    "background": "#262A33",
+    "foreground": "#E5E5E5",
+    "cursorColor": "#F8F8F0",
+    "selectionBackground": "#5A5C62",
+    "black": "#000000",
+    "red": "#CD3131",
+    "green": "#05BC79",
+    "yellow": "#E5E512",
+    "blue": "#2472C8",
+    "purple": "#BC3FBC",
+    "cyan": "#0FA8CD",
+    "white": "#E5E5E5",
+    "brightBlack": "#666666",
+    "brightRed": "#CD3131",
+    "brightGreen": "#05BC79",
+    "brightYellow": "#E5E512",
+    "brightBlue": "#2472C8",
+    "brightPurple": "#BC3FBC",
+    "brightCyan": "#0FA8CD",
+    "brightWhite": "#E5E5E5"
+}

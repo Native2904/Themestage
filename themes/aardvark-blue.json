@@ -1,0 +1,23 @@
+{
+    "name": "Aardvark Blue",
+    "background": "#102040",
+    "foreground": "#DDDDDD",
+    "cursorColor": "#007ACC",
+    "selectionBackground": "#BFDBFE",
+    "black": "#191919",
+    "red": "#AA342E",
+    "green": "#4B8C0F",
+    "yellow": "#DBBA00",
+    "blue": "#1370D3",
+    "purple": "#C43AC3",
+    "cyan": "#008EB0",
+    "white": "#BEBEBE",
+    "brightBlack": "#454545",
+    "brightRed": "#F05B50",
+    "brightGreen": "#95DC55",
+    "brightYellow": "#FFE763",
+    "brightBlue": "#60A4EC",
+    "brightPurple": "#E26BE2",
+    "brightCyan": "#60B6CB",
+    "brightWhite": "#F7F7F7"
+}
