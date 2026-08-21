@@ -40,6 +40,10 @@ Just press **Enter** on a theme entry. The plugin then:
 
 **Important:** ThemeStage's current approach is: **changing a theme restarts Total Commander.** This is currently the only way to reliably make both the new colors and the window title show up correctly right away — a plain file write alone doesn't get picked up by a running TC instance without further action. The restart is triggered automatically after selecting a theme (`AutoRestartForTitle=1`).
 
+## Dark mode
+
+ThemeStage automatically detects whether TC's own dark mode is set to "always enabled," and writes theme colors to the matching section (`[ColorsDark]` instead of `[Colors]`) accordingly. This means: if you want TC's overall interface (menus, dialogs) to stay dark, you can still pick any theme — light or dark — for the file list itself. No separate switch needed, fully automatic.
+
 ## Viewing details about a theme
 
 **Alt+Enter** on a theme entry shows:
@@ -79,13 +83,12 @@ ColorIniPathOverride=         ; optional: a fixed path to the color file instead
 DebugLogging=0                ; 1 = write a debug log (ThemeStage_debug.log) - leave off for normal use
 ```
 
-## Importing your existing, already-configured TC colors
+## Undoing everything — `! Reset`
 
-If you already have your own color configuration in TC before ThemeStage runs for the first time, you can import it as its own theme:
+There's always a fixed entry at the very top of the panel: **`! Reset`**. This is the plugin's off switch — pressing Enter on it undoes **everything** ThemeStage has ever changed:
 
-```ini
-[ThemMgr]
-ImportLegacyColors=1
-```
+- Colors are restored from a backup taken automatically on the very first start (`wincmd.ini.bak-themgr`)
+- The window title is removed
+- `ActiveTheme=` is cleared — the plugin is back to its pure starting state (opt-in, touches nothing)
 
-Set this once, restart TC — ThemeStage automatically creates a theme named "Return_to_Default" in the `themes\` folder from it (only the four directly transferable base colors, no invented values).
+This uses the same restart mechanism as a normal theme selection, so the effect is visible right away.

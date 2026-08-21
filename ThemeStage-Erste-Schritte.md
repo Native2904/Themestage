@@ -38,7 +38,11 @@ Einfach **Enter** auf einem Theme-Eintrag drücken. Das Plugin:
 - passt automatisch die Dateityp-Farben an (Code, Bilder, Videos, Archive usw. bekommen jeweils eine passende Farbe aus dem gewählten Theme)
 - prüft dabei den Kontrast: Texte, die auf dem neuen Hintergrund kaum lesbar wären, werden automatisch aufgehellt oder abgedunkelt
 
-**Wichtig:** TC übernimmt eine neu gesetzte Farbe nicht immer sofort sichtbar. In den meisten Fällen geschieht das automatisch im Hintergrund (kurzes Umschalten des Dunkelmodus, siehe `AutoBounceDarkmode=` weiter unten). Falls die Farbe trotzdem nicht sofort erscheint: einmal durch **Konfigurieren → Einstellungen → Farben** gehen und mit OK bestätigen — das zwingt TC, die Datei neu einzulesen.
+**Wichtig:** ThemeStage startet TC bei einem Themewechsel komplett neu — das ist aktuell der einzige zuverlässige Weg, um sowohl die Farben als auch den Fenstertitel sofort korrekt zu zeigen (ein kurzes Aufblitzen des Fensters dabei ist normal). Der Grund: TC selbst aktualisiert bestimmte Elemente, u. a. den Fenstertitel, nachweislich nicht live — das hat auch der TC-Autor selbst im Forum bestätigt.
+
+## Dunkelmodus
+
+ThemeStage erkennt automatisch, ob TCs eigener Dunkelmodus auf "Immer aktiviert" steht, und schreibt die Theme-Farben dann in die passende Sektion (`[ColorsDark]` statt `[Colors]`). Das bedeutet: Wer TCs Oberfläche grundsätzlich dunkel haben möchte (Menüs, Dialoge), kann trotzdem jedes beliebige — auch helle — Theme für die Dateiliste selbst wählen. Kein eigener Schalter nötig, läuft komplett automatisch.
 
 ## Details zu einem Theme ansehen
 
@@ -73,18 +77,17 @@ Bei `AutoColorFilters=0` steht in derselben Datei zusätzlich ein `[ColorFilters
 ActiveTheme=                  ; welches Theme aktuell aktiv ist (wird beim Auswaehlen automatisch gesetzt)
 AutoColorFilters=1            ; 1 = Dateityp-Farben automatisch generieren
                                ; 0 = eigene, manuell in TC gesetzte Dateityp-Farben bleiben erhalten
+AutoRestartForTitle=1         ; 1 = Themewechsel startet TC neu (siehe oben) - Standard, nicht empfohlen abzuschalten
 ColorIniPathOverride=         ; optional: eigener, fester Pfad zur Farbdatei statt automatischer Ermittlung
+DebugLogging=0                ; 1 = Protokolldatei (ThemeStage_debug.log) schreiben - nur zur Fehlersuche
 ```
 
-Eine neu gewählte Farbe wird normalerweise **automatisch** sofort sichtbar, ganz ohne manuellen Umweg über den Farben-Dialog. Sollte das auf einem System einmal nicht zuverlässig funktionieren, lässt sich das über `AutoBounceDarkmode=0` in der `ThemeStage.ini` abschalten (dann wieder wie oben beschrieben: einmal manuell durch **Konfigurieren → Einstellungen → Farben** gehen).
+## Alles rückgängig machen — `! Reset`
 
-## Eigene, bereits vorhandene TC-Farben übernehmen
+Ganz oben im Panel steht immer ein fester Eintrag: **`! Reset`**. Das ist der Ausschalter des Plugins — Enter darauf macht **alles** rückgängig, was ThemeStage jemals verändert hat:
 
-Wer schon eine eigene Farbkonfiguration in TC hat, bevor ThemeStage zum ersten Mal läuft, kann diese als eigenes Theme importieren:
+- Farben werden aus einer beim allerersten Start automatisch angelegten Sicherung (`wincmd.ini.bak-themgr`) wiederhergestellt
+- Der Fenstertitel wird entfernt
+- `ActiveTheme=` wird geleert — das Plugin ist danach wieder im reinen Ausgangszustand (Opt-in, greift in nichts ein)
 
-```ini
-[ThemMgr]
-ImportLegacyColors=1
-```
-
-Einmal setzen, TC neu starten — ThemeStage erzeugt daraus automatisch ein Theme namens „Return_to_Default" im `themes\`-Ordner (nur die vier direkt übertragbaren Grundfarben, keine erfundenen Werte).
+Das läuft über denselben Neustart-Mechanismus wie eine normale Theme-Auswahl, die Wirkung ist also sofort sichtbar.
