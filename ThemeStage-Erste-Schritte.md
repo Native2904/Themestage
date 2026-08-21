@@ -38,7 +38,7 @@ Einfach **Enter** auf einem Theme-Eintrag drücken. Das Plugin:
 - passt automatisch die Dateityp-Farben an (Code, Bilder, Videos, Archive usw. bekommen jeweils eine passende Farbe aus dem gewählten Theme)
 - prüft dabei den Kontrast: Texte, die auf dem neuen Hintergrund kaum lesbar wären, werden automatisch aufgehellt oder abgedunkelt
 
-**Wichtig:** ThemeStage startet TC bei einem Themewechsel komplett neu — das ist aktuell der einzige zuverlässige Weg, um sowohl die Farben als auch den Fenstertitel sofort korrekt zu zeigen (ein kurzes Aufblitzen des Fensters dabei ist normal). Der Grund: TC selbst aktualisiert bestimmte Elemente, u. a. den Fenstertitel, nachweislich nicht live — das hat auch der TC-Autor selbst im Forum bestätigt.
+**Wichtig:** Ab TC 10.50 wirkt ein Themewechsel sofort — Farben und Fenstertitel aktualisieren sich live, ohne dass TC neu startet. Dafür nutzt ThemeStage einen eigenen, offiziell dokumentierten TC-Befehl (`cm_SwitchColorsByFileType`), der TC anweist, seine Farbeinstellungen neu einzulesen. Bei älteren TC-Versionen (vor 10.50) fällt das Plugin automatisch auf einen kompletten Neustart zurück (kurzes Aufblitzen des Fensters, technisch aber genauso zuverlässig) — das lässt sich in `ThemeStage.ini` auch manuell erzwingen, siehe unten.
 
 ## Dunkelmodus
 
@@ -77,7 +77,14 @@ Bei `AutoColorFilters=0` steht in derselben Datei zusätzlich ein `[ColorFilters
 ActiveTheme=                  ; welches Theme aktuell aktiv ist (wird beim Auswaehlen automatisch gesetzt)
 AutoColorFilters=1            ; 1 = Dateityp-Farben automatisch generieren
                                ; 0 = eigene, manuell in TC gesetzte Dateityp-Farben bleiben erhalten
-AutoRestartForTitle=1         ; 1 = Themewechsel startet TC neu (siehe oben) - Standard, nicht empfohlen abzuschalten
+AutoRestartForTitle=0         ; 0 = Standard, Themewechsel wirken sofort ohne Neustart (TC 10.50+)
+                               ; 1 = Themewechsel startet TC komplett neu (fuer TC vor 10.50, oder
+                               ;     falls der Live-Weg bei dir aus irgendeinem Grund nicht sauber
+                               ;     laeuft - dann als Ruecksprung-Option gedacht)
+                               ; Betrifft NUR normale Themewechsel - "! Reset" startet TC IMMER neu,
+                               ; unabhaengig von dieser Einstellung (siehe Abschnitt weiter unten)
+ColorFilterReloadMethod=1     ; nur wirksam bei AutoRestartForTitle=0 - welcher Live-Weg genutzt wird,
+                               ; normalerweise nicht noetig anzufassen
 ColorIniPathOverride=         ; optional: eigener, fester Pfad zur Farbdatei statt automatischer Ermittlung
 DebugLogging=0                ; 1 = Protokolldatei (ThemeStage_debug.log) schreiben - nur zur Fehlersuche
 ```
@@ -90,4 +97,4 @@ Ganz oben im Panel steht immer ein fester Eintrag: **`! Reset`**. Das ist der Au
 - Der Fenstertitel wird entfernt
 - `ActiveTheme=` wird geleert — das Plugin ist danach wieder im reinen Ausgangszustand (Opt-in, greift in nichts ein)
 
-Das läuft über denselben Neustart-Mechanismus wie eine normale Theme-Auswahl, die Wirkung ist also sofort sichtbar.
+Das läuft **immer** über einen echten TC-Neustart — unabhängig von `AutoRestartForTitle=`/`ColorFilterReloadMethod=` oben, die nur normale Themewechsel betreffen. Reset entfernt nämlich die Farbumleitung selbst (TC soll danach wieder direkt aus `wincmd.ini` statt aus `color.ini` lesen), und das erkennt TC zuverlässig nur bei seinem eigenen Programmstart. Die Wirkung ist trotzdem sofort sichtbar, nur eben mit dem kurzen Aufblitzen des Fensters, das ein Neustart mit sich bringt.

@@ -1,8 +1,5 @@
 # ThemeStage
 
-<img width="1920" height="1042" alt="2026-08-21_102942" src="https://github.com/user-attachments/assets/5e63764d-23a6-430d-8696-a2214df195fb" />
-
-
 [Deutsch](#deutsch) | [English](#english)
 
 ---
@@ -21,6 +18,7 @@ Ein Total-Commander-Dateisystem-Plugin, das Windows-Terminal-Farbschemata (`.jso
 - Alt+Enter zeigt alle Farbcodes eines Themes mit echtem Farbmuster
 - Merkt sich pro Theme eigene, manuell in TC angepasste Dateityp-Farben (optional, siehe `AutoColorFilters=`)
 - Zeigt das aktive Theme im TC-Fenstertitel an
+- Themewechsel wirken sofort, ohne TC neu zu starten (ab TC 10.50; bei älterem TC automatisch über einen Neustart, siehe `AutoRestartForTitle=`)
 
 ### Installation
 
@@ -30,7 +28,7 @@ Kurzfassung: Konfigurieren → Einstellungen → Plugins → Dateisystem-Plugins
 
 ### Konfiguration
 
-Globale Einstellungen stehen in `ThemeStage.ini` (`[ThemMgr]`-Sektion), z. B. `ActiveTheme=`, `AutoColorFilters=`, `AutoRestartForTitle=`. Jedes einzelne Theme hat zusätzlich seine eigene `themes\active\<Name>.active.ini` mit Helligkeits-Feinjustierung (`FontBrightness=`/`BackgroundBrightness=`) — Details dazu ebenfalls in der Erste-Schritte-Anleitung.
+Globale Einstellungen stehen in `ThemeStage.ini` (`[ThemMgr]`-Sektion), z. B. `ActiveTheme=`, `AutoColorFilters=`, `AutoRestartForTitle=`, `ColorFilterReloadMethod=`. Jedes einzelne Theme hat zusätzlich seine eigene `themes\active\<Name>.active.ini` mit Helligkeits-Feinjustierung (`FontBrightness=`/`BackgroundBrightness=`) — Details dazu ebenfalls in der Erste-Schritte-Anleitung.
 
 ### Build
 
@@ -56,6 +54,7 @@ A Total Commander file-system plugin that loads Windows Terminal color schemes (
 - Alt+Enter shows all color codes of a theme with an actual color swatch next to each one
 - Remembers per-theme, manually adjusted file-type colors in TC (optional, see `AutoColorFilters=`)
 - Displays the active theme in TC's window title
+- Theme changes take effect immediately, without restarting TC (requires TC 10.50+; falls back to a restart automatically on older TC, see `AutoRestartForTitle=`)
 
 ### Installation
 
@@ -65,7 +64,7 @@ Short version: Configuration → Options → Plugins → File System Plugins →
 
 ### Configuration
 
-Global settings live in `ThemeStage.ini` (`[ThemMgr]` section), e.g. `ActiveTheme=`, `AutoColorFilters=`, `AutoRestartForTitle=`. Each individual theme additionally has its own `themes\active\<Name>.active.ini` with brightness fine-tuning (`FontBrightness=`/`BackgroundBrightness=`) — details also in the getting-started guide.
+Global settings live in `ThemeStage.ini` (`[ThemMgr]` section), e.g. `ActiveTheme=`, `AutoColorFilters=`, `AutoRestartForTitle=`, `ColorFilterReloadMethod=`. Each individual theme additionally has its own `themes\active\<Name>.active.ini` with brightness fine-tuning (`FontBrightness=`/`BackgroundBrightness=`) — details also in the getting-started guide.
 
 ### Build
 

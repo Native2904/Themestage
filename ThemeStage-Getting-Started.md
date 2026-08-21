@@ -38,7 +38,7 @@ Just press **Enter** on a theme entry. The plugin then:
 - automatically adjusts file-type colors (code, images, videos, archives, etc. each get a matching color from the chosen theme)
 - checks contrast while doing so: text that would be hard to read on the new background is automatically brightened or darkened
 
-**Important:** ThemeStage's current approach is: **changing a theme restarts Total Commander.** This is currently the only way to reliably make both the new colors and the window title show up correctly right away — a plain file write alone doesn't get picked up by a running TC instance without further action. The restart is triggered automatically after selecting a theme (`AutoRestartForTitle=1`).
+**Important:** On TC 10.50 and later, a theme change takes effect immediately — colors and window title update live, no TC restart involved. ThemeStage does this by triggering an official, documented TC command (`cm_SwitchColorsByFileType`) that tells TC to re-read its color settings. On older TC versions (before 10.50), the plugin automatically falls back to a full restart (a brief flash of the window, but just as reliable) — this can also be forced manually in `ThemeStage.ini`, see below.
 
 ## Dark mode
 
@@ -77,8 +77,13 @@ With `AutoColorFilters=0`, the same file additionally contains a `[ColorFilters]
 ActiveTheme=                  ; which theme is currently active (set automatically when selecting one)
 AutoColorFilters=1            ; 1 = automatically generate file-type colors
                                ; 0 = your own, manually set file-type colors in TC are preserved
-AutoRestartForTitle=1         ; 1 = a theme change fully restarts TC (currently the only reliable way
-                               ;     to get both colors and window title updated immediately)
+AutoRestartForTitle=0         ; 0 = default, theme changes take effect immediately, no restart (TC 10.50+)
+                               ; 1 = a theme change fully restarts TC (for TC before 10.50, or as a
+                               ;     fallback if the live path doesn't work cleanly for you)
+                               ; Only affects normal theme changes - "! Reset" ALWAYS restarts TC,
+                               ; regardless of this setting (see section below)
+ColorFilterReloadMethod=1     ; only relevant when AutoRestartForTitle=0 - which live-update path is
+                               ; used, normally no need to touch this
 ColorIniPathOverride=         ; optional: a fixed path to the color file instead of automatic detection
 DebugLogging=0                ; 1 = write a debug log (ThemeStage_debug.log) - leave off for normal use
 ```
@@ -91,4 +96,4 @@ There's always a fixed entry at the very top of the panel: **`! Reset`**. This i
 - The window title is removed
 - `ActiveTheme=` is cleared — the plugin is back to its pure starting state (opt-in, touches nothing)
 
-This uses the same restart mechanism as a normal theme selection, so the effect is visible right away.
+This **always** uses a real TC restart — regardless of the `AutoRestartForTitle=`/`ColorFilterReloadMethod=` settings above, which only affect normal theme changes. Reset removes the color redirect itself (TC should go back to reading directly from `wincmd.ini` instead of `color.ini`), and TC only picks that up reliably at its own startup. The effect is still immediate, just with the brief window flash a restart brings along.
