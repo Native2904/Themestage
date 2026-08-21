@@ -1,6 +1,6 @@
 # ThemeStage
 
-<img width="1905" height="958" alt="themstage" src="https://github.com/user-attachments/assets/f7487cf5-900b-42fb-9014-622c2e4b791e" />
+<img width="1920" height="1042" alt="2026-08-21_102942" src="https://github.com/user-attachments/assets/5e63764d-23a6-430d-8696-a2214df195fb" />
 
 
 [Deutsch](#deutsch) | [English](#english)
