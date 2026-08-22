@@ -1,0 +1,7 @@
+[plugininstall]
+description=ThemeStage - theme loader 
+type=wfx
+file=ThemeStage.wfx
+file=ThemeStage.wfx64
+defaultdir=Themestage
+version=1.1
