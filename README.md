@@ -1,10 +1,6 @@
-e# ThemeStage
+# ThemeStage
 
 [Deutsch](#deutsch) | [English](#english)
-
-
-<img width="1920" height="1041" alt="2026-08-21_214308" src="https://github.com/user-attachments/assets/fdb12f98-a88d-449c-b607-9caa6f3895ab" />
-
 
 ---
 
@@ -23,6 +19,7 @@ Ein Total-Commander-Dateisystem-Plugin, das Windows-Terminal-Farbschemata (`.jso
 - Merkt sich pro Theme eigene, manuell in TC angepasste Dateityp-Farben (optional, siehe `AutoColorFilters=`)
 - Zeigt das aktive Theme im TC-Fenstertitel an
 - Themewechsel wirken sofort, ohne TC neu zu starten (ab TC 10.50; bei älterem TC automatisch über einen Neustart, siehe `AutoRestartForTitle=`)
+- Erkennt und schont Dateityp-Farbfilter anderer Tools (z. B. das Autorun-Plugin) — nur ThemeStages eigene, automatisch generierte Einträge werden ersetzt, alles andere bleibt unangetastet, auch über `! Reset` hinweg
 
 ### Installation
 
@@ -59,6 +56,7 @@ A Total Commander file-system plugin that loads Windows Terminal color schemes (
 - Remembers per-theme, manually adjusted file-type colors in TC (optional, see `AutoColorFilters=`)
 - Displays the active theme in TC's window title
 - Theme changes take effect immediately, without restarting TC (requires TC 10.50+; falls back to a restart automatically on older TC, see `AutoRestartForTitle=`)
+- Recognizes and preserves file-type color filters belonging to other tools (e.g. the Autorun plugin) — only ThemeStage's own, automatically generated entries get replaced, everything else is left untouched, even across `! Reset`
 
 ### Installation
 

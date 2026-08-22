@@ -40,6 +40,10 @@ Just press **Enter** on a theme entry. The plugin then:
 
 **Important:** On TC 10.50 and later, a theme change takes effect immediately — colors and window title update live, no TC restart involved. ThemeStage does this by triggering an official, documented TC command (`cm_SwitchColorsByFileType`) that tells TC to re-read its color settings. On older TC versions (before 10.50), the plugin automatically falls back to a full restart (a brief flash of the window, but just as reliable) — this can also be forced manually in `ThemeStage.ini`, see below.
 
+## Working alongside other plugins (e.g. Autorun)
+
+If you use another tool alongside ThemeStage that manages its own file-type color filters — for example the Autorun plugin, which often expects its own content filter to sit at a fixed position — ThemeStage automatically recognizes such foreign entries and leaves them alone. Only the entries ThemeStage itself generates under `AutoColorFilters=1` get replaced on a theme change; everything else stays exactly where it is, even across `! Reset`. No separate switch needed, fully automatic.
+
 ## Dark mode
 
 ThemeStage automatically detects whether TC's own dark mode is set to "always enabled," and writes theme colors to the matching section (`[ColorsDark]` instead of `[Colors]`) accordingly. This means: if you want TC's overall interface (menus, dialogs) to stay dark, you can still pick any theme — light or dark — for the file list itself. No separate switch needed, fully automatic.

@@ -40,6 +40,10 @@ Einfach **Enter** auf einem Theme-Eintrag drücken. Das Plugin:
 
 **Wichtig:** Ab TC 10.50 wirkt ein Themewechsel sofort — Farben und Fenstertitel aktualisieren sich live, ohne dass TC neu startet. Dafür nutzt ThemeStage einen eigenen, offiziell dokumentierten TC-Befehl (`cm_SwitchColorsByFileType`), der TC anweist, seine Farbeinstellungen neu einzulesen. Bei älteren TC-Versionen (vor 10.50) fällt das Plugin automatisch auf einen kompletten Neustart zurück (kurzes Aufblitzen des Fensters, technisch aber genauso zuverlässig) — das lässt sich in `ThemeStage.ini` auch manuell erzwingen, siehe unten.
 
+## Zusammenspiel mit anderen Plugins (z. B. Autorun)
+
+Nutzt du neben ThemeStage ein weiteres Tool, das eigene Dateityp-Farbfilter in TC verwaltet — etwa das Autorun-Plugin, das oft einen eigenen Inhalts-Filter fest auf einer bestimmten Position erwartet — erkennt ThemeStage solche fremden Einträge automatisch und lässt sie in Ruhe. Nur die Einträge, die ThemeStage selbst bei `AutoColorFilters=1` generiert, werden bei einem Themewechsel ersetzt; alles andere bleibt unverändert an seinem Platz stehen, auch über `! Reset` hinweg. Kein eigener Schalter nötig, läuft automatisch.
+
 ## Dunkelmodus
 
 ThemeStage erkennt automatisch, ob TCs eigener Dunkelmodus auf "Immer aktiviert" steht, und schreibt die Theme-Farben dann in die passende Sektion (`[ColorsDark]` statt `[Colors]`). Das bedeutet: Wer TCs Oberfläche grundsätzlich dunkel haben möchte (Menüs, Dialoge), kann trotzdem jedes beliebige — auch helle — Theme für die Dateiliste selbst wählen. Kein eigener Schalter nötig, läuft komplett automatisch.
