@@ -2,7 +2,8 @@
 
 [English](#english) | [Deutsch](#deutsch)
 
----
+<img width="1920" height="846" alt="2026-08-25_231303" src="https://github.com/user-attachments/assets/3c3f4a9b-29a9-4350-a4e9-42cd04434be4" />
+
 
 ## English
 
