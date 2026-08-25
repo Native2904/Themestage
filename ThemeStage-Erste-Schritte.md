@@ -50,11 +50,28 @@ ThemeStage erkennt automatisch, ob TCs eigener Dunkelmodus auf "Immer aktiviert"
 
 ## Details zu einem Theme ansehen
 
-**Alt+Enter** auf einem Theme-Eintrag zeigt:
+**Alt+Enter** auf einem Theme-Eintrag öffnet ein eigenes, dunkel gestaltetes Dashboard-Fenster mit:
 
-- alle Farbcodes mit echtem Farbmuster daneben
+- allen UI-Farben (Hintergrund, Vordergrund, Cursor, Auswahl) als Farbkarten mit Hex-Code
+- der kompletten ANSI-Palette (16 Farben), jeweils mit Kontrastverhältnis und Bewertung (AA / AA Large / Fail) gegen den Theme-Hintergrund
 - ob das Theme als hell oder dunkel eingestuft wurde
-- die aktuell verknüpften Helligkeits-Einstellungen
+- den aktuell verknüpften Helligkeits-Einstellungen sowie dem `AutoColorFilters=`-Stand
+- einem Hinweis, falls beim Laden unvollständige oder ungültige Farbangaben ersetzt werden mussten
+
+## Farben direkt bearbeiten — ThemeLister.wlx
+
+ThemeStage bringt ein eigenes Lister-Plugin mit, `ThemeLister.wlx64` (bzw. `.wlx` für 32-Bit). Einmal installiert, macht es aus demselben dunklen Dashboard von Alt+Enter einen vollwertigen Farbeditor, direkt in TCs eigenem Datei-Betrachter:
+
+1. Einmalig installieren: **Konfigurieren → Einstellungen → Plugins → Lister-Plugins → Konfigurieren → Hinzufügen** → `ThemeLister.wlx64` auswählen
+2. Einen beliebigen Theme-Eintrag in `\\themestage\` auswählen und **F3** (Lister) oder **Strg+Q** (QuickView) drücken
+3. Auf eine der 20 Farbkarten klicken öffnet den normalen Windows-Farbwähler zum Ändern
+4. **Strg+S** speichert — schreibt direkt in die echte `.json`-Datei dieses Themes zurück
+
+Ein paar Dinge dazu:
+
+- Beim allerersten Speichern eines Themes legt ThemeStage automatisch eine einmalige Sicherung an (`<Theme>.json.bak-themelister`) direkt daneben — ein versehentlicher Klick lässt sich also jederzeit von Hand rückgängig machen
+- Das funktioniert nur für Themes, die schon in `themes\` liegen — ThemeLister rührt keine anderen, unabhängigen `.json`-Dateien auf deinem System an, es reagiert gezielt nur auf Dateien, die ThemeStage selbst beim Drücken von F3/Strg+Q übergibt
+- Keine `.active.ini`-Einstellungen (Helligkeits-Feinjustierung, `AutoColorFilters=`) werden hier angezeigt — diese Ansicht ist rein für die Farbwerte des Themes selbst, genau wie der Farbteil von Alt+Enter
 
 ## Helligkeit pro Theme feinjustieren
 
@@ -90,7 +107,9 @@ AutoRestartForTitle=0         ; 0 = Standard, Themewechsel wirken sofort ohne Ne
 ColorFilterReloadMethod=1     ; nur wirksam bei AutoRestartForTitle=0 - welcher Live-Weg genutzt wird,
                                ; normalerweise nicht noetig anzufassen
 ColorIniPathOverride=         ; optional: eigener, fester Pfad zur Farbdatei statt automatischer Ermittlung
-DebugLogging=0                ; 1 = Protokolldatei (ThemeStage_debug.log) schreiben - nur zur Fehlersuche
+DebugLogging=1                ; 1 = Protokolldatei (ThemeStage_debug.log) schreiben - neuer Standard,
+                               ;     weil ein echter Datenverlust-Fall ohne Log schwer zu diagnostizieren
+                               ;     war; kann auf 0 zurueckgestellt werden, sobald alles stabil laeuft
 ```
 
 ## Alles rückgängig machen — `! Reset`

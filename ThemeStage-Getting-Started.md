@@ -50,11 +50,28 @@ ThemeStage automatically detects whether TC's own dark mode is set to "always en
 
 ## Viewing details about a theme
 
-**Alt+Enter** on a theme entry shows:
+**Alt+Enter** on a theme entry opens its own dark-styled dashboard window with:
 
-- every color code with an actual color swatch next to it
+- all UI colors (background, foreground, cursor, selection) as color cards with hex codes
+- the full ANSI palette (16 colors), each with its contrast ratio and rating (AA / AA Large / Fail) against the theme's background
 - whether the theme was classified as light or dark
-- the currently linked brightness settings
+- the currently linked brightness settings and the `AutoColorFilters=` state
+- a note if any incomplete or invalid color values had to be replaced while loading
+
+## Editing colors directly — ThemeLister.wlx
+
+ThemeStage ships with a companion Lister plugin, `ThemeLister.wlx64` (or `.wlx` for 32-bit). Once installed, it turns the same dark dashboard from Alt+Enter into a full color editor, right inside TC's own file viewer:
+
+1. Install it once: **Configuration → Options → Plugins → Lister Plugins → Configure → Add** → select `ThemeLister.wlx64`
+2. Select any theme entry in `\\themestage\` and press **F3** (Lister) or **Ctrl+Q** (QuickView)
+3. Click any of the 20 color cards to open the standard Windows color picker and change it
+4. Press **Ctrl+S** to save — this writes directly back into that theme's real `.json` file
+
+A few things worth knowing:
+
+- The very first time you save a given theme, ThemeStage automatically creates a one-time backup (`<theme>.json.bak-themelister`) right next to it, so an accidental edit can always be undone by hand
+- This only works for themes already sitting in `themes\` — ThemeLister doesn't do anything with unrelated `.json` files elsewhere on your system, it specifically reacts to files ThemeStage itself hands it when you press F3/Ctrl+Q
+- No `.active.ini`-related settings (brightness fine-tuning, `AutoColorFilters=`) are shown here — this view is purely for the theme's own color values, exactly like Alt+Enter's color section
 
 ## Fine-tuning brightness per theme
 
@@ -89,7 +106,9 @@ AutoRestartForTitle=0         ; 0 = default, theme changes take effect immediate
 ColorFilterReloadMethod=1     ; only relevant when AutoRestartForTitle=0 - which live-update path is
                                ; used, normally no need to touch this
 ColorIniPathOverride=         ; optional: a fixed path to the color file instead of automatic detection
-DebugLogging=0                ; 1 = write a debug log (ThemeStage_debug.log) - leave off for normal use
+DebugLogging=1                ; 1 = write a debug log (ThemeStage_debug.log) - default since a real
+                               ;     data-loss case was hard to diagnose with logging off by default;
+                               ;     safe to set back to 0 once you're confident everything is stable
 ```
 
 ## Undoing everything — `! Reset`

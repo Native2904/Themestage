@@ -2,8 +2,7 @@
 
 [English](#english) | [Deutsch](#deutsch)
 
-<img width="1920" height="1042" alt="2026-08-23_082816" src="https://github.com/user-attachments/assets/345f54a5-fff9-455a-9288-2e56417d3533" />
-
+---
 
 ## English
 
@@ -21,6 +20,7 @@ A Total Commander file-system plugin that loads Windows Terminal color schemes (
 - Displays the active theme in TC's window title
 - Theme changes take effect immediately, without restarting TC (requires TC 10.50+; falls back to a restart automatically on older TC, see `AutoRestartForTitle=`)
 - Recognizes and preserves file-type color filters belonging to other tools (e.g. the Autorun plugin) — only ThemeStage's own, automatically generated entries get replaced, everything else is left untouched, even across `! Reset`
+- Ships with a companion Lister plugin, `ThemeLister.wlx`, that turns the same color dashboard into a full editor — select a theme, press F3/Ctrl+Q, click any color to change it, Ctrl+S saves directly back into that theme's file
 
 ### Installation
 
@@ -34,7 +34,7 @@ Global settings live in `ThemeStage.ini` (`[ThemMgr]` section), e.g. `ActiveThem
 
 ### Build
 
-MinGW-w64 (64-bit and 32-bit toolchain), C++17. `build_release_themestage.bat` produces a ready-to-upload package including `pluginst.inf`.
+MinGW-w64 (64-bit and 32-bit toolchain), C++17. `build_release_themestage.bat` builds `ThemeStage.wfx`/`.wfx64` and produces a ready-to-upload package including `pluginst.inf`. `build_debug_themelister.bat` builds the companion `ThemeLister.wlx`/`.wlx64` separately — both share the same source folder (`ThemMgr.h`, `ThemeDashboard.h`, `lang_config.h`).
 
 ### License
 
@@ -58,6 +58,7 @@ Ein Total-Commander-Dateisystem-Plugin, das Windows-Terminal-Farbschemata (`.jso
 - Zeigt das aktive Theme im TC-Fenstertitel an
 - Themewechsel wirken sofort, ohne TC neu zu starten (ab TC 10.50; bei älterem TC automatisch über einen Neustart, siehe `AutoRestartForTitle=`)
 - Erkennt und schont Dateityp-Farbfilter anderer Tools (z. B. das Autorun-Plugin) — nur ThemeStages eigene, automatisch generierte Einträge werden ersetzt, alles andere bleibt unangetastet, auch über `! Reset` hinweg
+- Bringt ein eigenes Lister-Plugin mit, `ThemeLister.wlx`, das aus demselben Farb-Dashboard einen vollwertigen Editor macht — Theme auswählen, F3/Strg+Q drücken, jede Farbe direkt anklicken und ändern, Strg+S speichert direkt in die Theme-Datei zurück
 
 ### Installation
 
@@ -71,7 +72,7 @@ Globale Einstellungen stehen in `ThemeStage.ini` (`[ThemMgr]`-Sektion), z. B. `A
 
 ### Build
 
-MinGW-w64 (64-Bit und 32-Bit Toolchain), C++17. `build_release_themestage.bat` erzeugt ein fertiges, upload-bereites Paket inklusive `pluginst.inf`.
+MinGW-w64 (64-Bit und 32-Bit Toolchain), C++17. `build_release_themestage.bat` baut `ThemeStage.wfx`/`.wfx64` und erzeugt ein fertiges, upload-bereites Paket inklusive `pluginst.inf`. `build_debug_themelister.bat` baut das begleitende `ThemeLister.wlx`/`.wlx64` separat — beide teilen sich denselben Quellordner (`ThemMgr.h`, `ThemeDashboard.h`, `lang_config.h`).
 
 ### Lizenz
 
