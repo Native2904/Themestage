@@ -2,8 +2,7 @@
 
 [English](#english) | [Deutsch](#deutsch)
 
-<img width="1920" height="846" alt="2026-08-25_231303" src="https://github.com/user-attachments/assets/3c3f4a9b-29a9-4350-a4e9-42cd04434be4" />
-
+---
 
 ## English
 
@@ -39,7 +38,7 @@ MinGW-w64 (64-bit and 32-bit toolchain), C++17. `build_release_themestage.bat` b
 
 ### License
 
-MIT License. © Björn Dubberke / Native2904
+MIT License. © John Doe / Native2904
 
 ---
 
@@ -77,4 +76,4 @@ MinGW-w64 (64-Bit und 32-Bit Toolchain), C++17. `build_release_themestage.bat` b
 
 ### Lizenz
 
-MIT License. © Björn Dubberke / Native2904
+MIT License. © John Doe / Native2904

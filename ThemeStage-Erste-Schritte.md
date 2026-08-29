@@ -40,6 +40,24 @@ Einfach **Enter** auf einem Theme-Eintrag drücken. Das Plugin:
 
 **Wichtig:** Ab TC 10.50 wirkt ein Themewechsel sofort — Farben und Fenstertitel aktualisieren sich live, ohne dass TC neu startet. Dafür nutzt ThemeStage einen eigenen, offiziell dokumentierten TC-Befehl (`cm_SwitchColorsByFileType`), der TC anweist, seine Farbeinstellungen neu einzulesen. Bei älteren TC-Versionen (vor 10.50) fällt das Plugin automatisch auf einen kompletten Neustart zurück (kurzes Aufblitzen des Fensters, technisch aber genauso zuverlässig) — das lässt sich in `ThemeStage.ini` auch manuell erzwingen, siehe unten.
 
+## Mehrere TC-Fenster gleichzeitig offen
+
+Läuft TC bei dir öfter mit mehreren Fenstern gleichzeitig (z. B. zwei oder drei separate TC-Instanzen nebeneinander), lohnt sich ein kurzer Blick auf dieses Verhalten — kein Fehler, aber gut zu wissen, damit nichts überraschend wirkt.
+
+**Alle TC-Fenster teilen sich dieselbe Farbdatei.** Wählst du in einem Fenster ein Theme, wird das in genau diese eine, gemeinsame Datei geschrieben. Wählst du kurz danach in einem anderen Fenster ein anderes Theme, wird dieselbe Datei einfach erneut überschrieben — mit dem neuen Wert.
+
+**Ein Beispiel:**
+
+1. Fenster A: Theme "Dracula" ausgewählt
+2. Fenster B (kurz danach): Theme "Nord" ausgewählt
+3. Fenster C (wieder kurz danach): Theme "Gruvbox" ausgewählt
+
+Am Ende steht in der Datei schlicht **Gruvbox** — der zuletzt geschriebene Wert, unabhängig davon, welches Fenster zuerst geöffnet oder zuletzt geschlossen wurde. Es zählt einzig der Zeitpunkt der tatsächlichen Auswahl.
+
+**Was du dabei siehst:** Direkt nach den drei Auswahlen zeigt jedes der drei Fenster erstmal weiterhin **sein eigenes**, zuletzt selbst gewähltes Theme — Fenster A zeigt also noch Dracula, Fenster B noch Nord, obwohl in der Datei längst Gruvbox steht. Das ist keine fehlerhafte oder beschädigte Datei, sondern schlicht: jedes Fenster zeigt nur das, was es selbst zuletzt ausgelöst hat, und bekommt von den Aktionen der anderen Fenster nichts automatisch mit. Diese Anzeige gleicht sich von selbst wieder an, sobald ein Fenster das nächste Mal selbst aktiv wird (nächster Themewechsel in genau diesem Fenster, oder ein normaler TC-Neustart).
+
+**Kurz gesagt:** Mehrere gleichzeitig offene TC-Fenster vertragen sich technisch problemlos miteinander — es entsteht keine beschädigte Datei, kein Datenverlust. Nur die Anzeige kann für einen Moment auseinanderlaufen, bis sich alles wieder angleicht. Wer regelmäßig mit mehreren TC-Fenstern arbeitet und immer dieselbe Farbe überall sehen möchte, sollte ein Theme einfach nur in **einem** Fenster wechseln und das andere anschließend kurz neu laden (z. B. `\\themestage\` einmal verlassen und wieder betreten).
+
 ## Zusammenspiel mit anderen Plugins (z. B. Autorun)
 
 Nutzt du neben ThemeStage ein weiteres Tool, das eigene Dateityp-Farbfilter in TC verwaltet — etwa das Autorun-Plugin, das oft einen eigenen Inhalts-Filter fest auf einer bestimmten Position erwartet — erkennt ThemeStage solche fremden Einträge automatisch und lässt sie in Ruhe. Nur die Einträge, die ThemeStage selbst bei `AutoColorFilters=1` generiert, werden bei einem Themewechsel ersetzt; alles andere bleibt unverändert an seinem Platz stehen, auch über `! Reset` hinweg. Kein eigener Schalter nötig, läuft automatisch.
@@ -71,7 +89,7 @@ Ein paar Dinge dazu:
 
 - Beim allerersten Speichern eines Themes legt ThemeStage automatisch eine einmalige Sicherung an (`<Theme>.json.bak-themelister`) direkt daneben — ein versehentlicher Klick lässt sich also jederzeit von Hand rückgängig machen
 - Das funktioniert nur für Themes, die schon in `themes\` liegen — ThemeLister rührt keine anderen, unabhängigen `.json`-Dateien auf deinem System an, es reagiert gezielt nur auf Dateien, die ThemeStage selbst beim Drücken von F3/Strg+Q übergibt
-- Keine `.active.ini`-Einstellungen (Helligkeits-Feinjustierung, `AutoColorFilters=`) werden hier angezeigt — diese Ansicht ist rein für die Farbwerte des Themes selbst, genau wie der Farbteil von Alt+Enter
+- Keine `.active.ini`-Einstellungen (Helligkeits-Feinjustierung, `AutoColorFilters=`) werden hier angezeigt oder verändert — das ist eine separate Datei (siehe "Helligkeit pro Theme feinjustieren" weiter unten). Strg+S speichert hier ausschließlich in `themes\<Name>.json` — die rohe Farbquelle, nicht die Helligkeits-/Filter-Einstellungsdatei
 
 ## Helligkeit pro Theme feinjustieren
 

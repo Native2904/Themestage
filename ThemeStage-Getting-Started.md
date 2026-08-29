@@ -40,6 +40,24 @@ Just press **Enter** on a theme entry. The plugin then:
 
 **Important:** On TC 10.50 and later, a theme change takes effect immediately — colors and window title update live, no TC restart involved. ThemeStage does this by triggering an official, documented TC command (`cm_SwitchColorsByFileType`) that tells TC to re-read its color settings. On older TC versions (before 10.50), the plugin automatically falls back to a full restart (a brief flash of the window, but just as reliable) — this can also be forced manually in `ThemeStage.ini`, see below.
 
+## Multiple TC windows open at once
+
+If you regularly run TC with several windows open side by side (two or three separate TC instances at once), this behavior is worth knowing about — not a bug, but good to understand so nothing feels unexpected.
+
+**All TC windows share the same color file.** Selecting a theme in one window writes to that one, shared file. Selecting a different theme in another window shortly after simply overwrites that same file again — with the new value.
+
+**An example:**
+
+1. Window A: selects theme "Dracula"
+2. Window B (shortly after): selects theme "Nord"
+3. Window C (shortly after that): selects theme "Gruvbox"
+
+In the end, the file simply contains **Gruvbox** — the last value written, regardless of which window was opened first or closed last. Only the timing of the actual selection matters.
+
+**What you'll see:** Right after those three selections, each window initially keeps showing **its own**, last-selected theme — window A still shows Dracula, window B still shows Nord, even though the file has long since moved on to Gruvbox. This isn't a broken or corrupted file — each window simply shows whatever it last triggered itself, and doesn't automatically learn about what other windows have done. This display catches up on its own the next time that window becomes active again (its own next theme change, or a normal TC restart).
+
+**In short:** Multiple TC windows open at the same time coexist just fine technically — no corrupted file, no data loss. Only the on-screen display can briefly drift apart until it catches up. If you work with several TC windows regularly and want them to always show the same color, just change the theme in **one** window and then briefly refresh the others (e.g. leave `\\themestage\` and re-enter it).
+
 ## Working alongside other plugins (e.g. Autorun)
 
 If you use another tool alongside ThemeStage that manages its own file-type color filters — for example the Autorun plugin, which often expects its own content filter to sit at a fixed position — ThemeStage automatically recognizes such foreign entries and leaves them alone. Only the entries ThemeStage itself generates under `AutoColorFilters=1` get replaced on a theme change; everything else stays exactly where it is, even across `! Reset`. No separate switch needed, fully automatic.
@@ -71,7 +89,7 @@ A few things worth knowing:
 
 - The very first time you save a given theme, ThemeStage automatically creates a one-time backup (`<theme>.json.bak-themelister`) right next to it, so an accidental edit can always be undone by hand
 - This only works for themes already sitting in `themes\` — ThemeLister doesn't do anything with unrelated `.json` files elsewhere on your system, it specifically reacts to files ThemeStage itself hands it when you press F3/Ctrl+Q
-- No `.active.ini`-related settings (brightness fine-tuning, `AutoColorFilters=`) are shown here — this view is purely for the theme's own color values, exactly like Alt+Enter's color section
+- No `.active.ini`-related settings (brightness fine-tuning, `AutoColorFilters=`) are shown or touched here — that's a separate file (see "Fine-tuning brightness per theme" below). Ctrl+S here saves only to the theme's own `themes\<name>.json` — the raw color source, not the brightness/filter settings file
 
 ## Fine-tuning brightness per theme
 
