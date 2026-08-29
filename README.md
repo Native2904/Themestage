@@ -1,8 +1,9 @@
+
 # ThemeStage
 
 [English](#english) | [Deutsch](#deutsch)
 
----
+<img width="1916" height="863" alt="2026-08-29_214041" src="https://github.com/user-attachments/assets/4b6f85b8-2a04-4163-9cfa-23804728d039" />
 
 ## English
 
