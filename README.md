@@ -1,6 +1,6 @@
 # ThemeStage — Getting Started
 
-[Screenshot_1320.bmp](https://github.com/user-attachments/files/34913499/Screenshot_1320.bmp)
+<img width="1920" height="816" alt="Screenshot_1320" src="https://github.com/user-attachments/assets/e4d19ce7-72bb-40aa-a373-152e1294010e" />
 
 
 ## Installation
