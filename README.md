@@ -1,5 +1,8 @@
 # ThemeStage — Getting Started
 
+[Screenshot_1320.bmp](https://github.com/user-attachments/files/34913499/Screenshot_1320.bmp)
+
+
 ## Installation
 
 1. In Total Commander: **Configuration → Options → Plugins → File System Plugins → Configure → Add**
